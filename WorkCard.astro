@@ -1,0 +1,57 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  slug: string;
+  coverImage?: string;
+  technologies?: string[];
+}
+
+const { title, description, tags, slug, coverImage, technologies } = Astro.props;
+---
+
+<article class="card h-full flex flex-col">
+  {coverImage && (
+    <a href={`/works/${slug}`} class="block mb-4 no-underline">
+      <img
+        src={coverImage}
+        alt={title}
+        class="w-full h-48 object-cover rounded-lg"
+        loading="lazy"
+      />
+    </a>
+  )}
+  
+  <div class="flex-1 flex flex-col">
+    <a href={`/works/${slug}`} class="no-underline hover:no-underline">
+      <h3 class="text-xl font-bold mb-3 hover:text-[rgb(var(--color-primary))] transition-colors">
+        {title}
+      </h3>
+    </a>
+    
+    <p class="text-[rgb(var(--color-secondary))] mb-4 flex-1">
+      {description}
+    </p>
+    
+    {technologies && technologies.length > 0 && (
+      <div class="flex flex-wrap gap-2 mb-3">
+        {technologies.map((tech) => (
+          <span class="tag text-xs bg-[rgb(var(--color-primary))] bg-opacity-10 border-[rgb(var(--color-primary))]">
+            {tech}
+          </span>
+        ))}
+      </div>
+    )}
+    
+    {tags.length > 0 && (
+      <div class="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <a href={`/tags/${tag}`} class="tag text-xs no-underline hover:bg-[rgb(var(--color-border))] transition-colors">
+            #{tag}
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</article>

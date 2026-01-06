@@ -1,0 +1,43 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-[rgb(var(--color-card))] border-t border-[rgb(var(--color-border))] mt-20">
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-center md:text-left">
+        <p class="text-[rgb(var(--color-secondary))]">
+          © {currentYear} Your Name. All rights reserved.
+        </p>
+      </div>
+      
+      <div class="flex gap-6">
+        <a
+          href="/rss.xml"
+          class="text-[rgb(var(--color-secondary))] hover:text-[rgb(var(--color-primary))] transition-colors"
+          aria-label="RSS"
+        >
+          RSS
+        </a>
+        <a
+          href="https://github.com/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[rgb(var(--color-secondary))] hover:text-[rgb(var(--color-primary))] transition-colors"
+          aria-label="GitHub"
+        >
+          GitHub
+        </a>
+        <a
+          href="https://twitter.com/yourusername"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-[rgb(var(--color-secondary))] hover:text-[rgb(var(--color-primary))] transition-colors"
+          aria-label="Twitter"
+        >
+          Twitter
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
