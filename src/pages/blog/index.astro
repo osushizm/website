@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import { getAllTags } from '../../utils/tags';
+
+// ブログ記事を取得（下書き除外）
+const allBlogPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allBlogPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// タグ一覧を取得
+const allTags = getAllTags(sortedPosts);
+---
+
+<BaseLayout
+  title="ブログ"
+  description="技術ブログ記事の一覧です。Web開発、プログラミング、デザインなどについて書いています。"
+>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8">ブログ</h1>
+      
+      <!-- Tag Filter -->
+      {allTags.length > 0 && (
+        <div class="mb-8">
+          <h2 class="text-lg font-semibold mb-4">タグで絞り込む</h2>
+          <div class="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <a href={`/tags/${tag}`} class="tag hover:bg-[rgb(var(--color-border))] transition-colors">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      <!-- Blog Posts Grid -->
+      {sortedPosts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sortedPosts.map((post) => (
+            <BlogCard
+              title={post.data.title}
+              description={post.data.description}
+              date={post.data.date}
+              tags={post.data.tags}
+              slug={post.slug}
+              coverImage={post.data.coverImage}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-[rgb(var(--color-secondary))] text-lg">
+            まだブログ記事がありません
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

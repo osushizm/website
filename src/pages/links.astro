@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+
+const links = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/yourusername',
+    description: 'オープンソースプロジェクトやコードを公開しています',
+    icon: 'github',
+  },
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/yourusername',
+    description: '技術情報や日常のつぶやきを投稿しています',
+    icon: 'twitter',
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/yourusername',
+    description: 'プロフェッショナルなネットワーキング',
+    icon: 'linkedin',
+  },
+  {
+    name: 'Zenn',
+    url: 'https://zenn.dev/yourusername',
+    description: '技術記事を投稿しています',
+    icon: 'zenn',
+  },
+  {
+    name: 'Qiita',
+    url: 'https://qiita.com/yourusername',
+    description: '技術記事を投稿しています',
+    icon: 'qiita',
+  },
+];
+---
+
+<BaseLayout
+  title="リンク"
+  description="SNSやその他のプラットフォームへのリンク集です。"
+>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8 text-center">リンク</h1>
+      
+      <p class="text-center text-[rgb(var(--color-secondary))] mb-12">
+        各種SNSやプラットフォームでも活動しています。お気軽にフォローしてください。
+      </p>
+      
+      <div class="space-y-4">
+        {links.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="card block no-underline hover:no-underline hover:scale-105 transition-transform"
+          >
+            <div class="flex items-center gap-4">
+              <div class="flex-1">
+                <h2 class="text-xl font-bold mb-1">
+                  {link.name}
+                </h2>
+                <p class="text-[rgb(var(--color-secondary))]">
+                  {link.description}
+                </p>
+              </div>
+              <svg class="w-6 h-6 text-[rgb(var(--color-secondary))]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

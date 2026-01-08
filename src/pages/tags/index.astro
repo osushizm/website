@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { getAllTags, getTagCounts } from '../../utils/tags';
+
+// ブログ記事と成果物を取得
+const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
+const works = await getCollection('works');
+
+// 全コンテンツからタグを取得
+const allContent = [...blogPosts, ...works];
+const allTags = getAllTags(allContent);
+const tagCounts = getTagCounts(allContent);
+
+// タグを使用頻度順にソート
+const sortedTags = allTags.sort((a, b) => tagCounts[b] - tagCounts[a]);
+---
+
+<BaseLayout
+  title="タグ一覧"
+  description="ブログ記事と成果物のタグ一覧です。"
+>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8">タグ一覧</h1>
+      
+      {sortedTags.length > 0 ? (
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {sortedTags.map((tag) => (
+            <a
+              href={`/tags/${tag}`}
+              class="card text-center no-underline hover:no-underline hover:scale-105 transition-transform"
+            >
+              <h2 class="text-lg font-semibold mb-2">
+                #{tag}
+              </h2>
+              <p class="text-[rgb(var(--color-secondary))] text-sm">
+                {tagCounts[tag]} 件
+              </p>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p class="text-[rgb(var(--color-secondary))] text-center py-12">
+          タグがありません
+        </p>
+      )}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import WorkCard from '../../components/works/WorkCard.astro';
+import { getAllTags } from '../../utils/tags';
+
+// 成果物を取得
+const allWorks = await getCollection('works');
+const sortedWorks = allWorks.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// タグ一覧を取得
+const allTags = getAllTags(sortedWorks);
+---
+
+<BaseLayout
+  title="成果物"
+  description="制作した成果物・プロジェクトの一覧です。"
+>
+  <div class="container mx-auto px-4 py-12">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8">成果物</h1>
+      
+      <!-- Tag Filter -->
+      {allTags.length > 0 && (
+        <div class="mb-8">
+          <h2 class="text-lg font-semibold mb-4">タグで絞り込む</h2>
+          <div class="flex flex-wrap gap-2">
+            {allTags.map((tag) => (
+              <a href={`/tags/${tag}`} class="tag hover:bg-[rgb(var(--color-border))] transition-colors">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      <!-- Works Grid -->
+      {sortedWorks.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sortedWorks.map((work) => (
+            <WorkCard
+              title={work.data.title}
+              description={work.data.description}
+              tags={work.data.tags}
+              slug={work.slug}
+              coverImage={work.data.coverImage}
+              technologies={work.data.technologies}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-12">
+          <p class="text-[rgb(var(--color-secondary))] text-lg">
+            まだ成果物がありません
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+</BaseLayout>

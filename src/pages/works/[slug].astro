@@ -1,0 +1,136 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { formatDate } from '../../utils/date';
+
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+  return works.map((work) => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+interface Props {
+  work: CollectionEntry<'works'>;
+}
+
+const { work } = Astro.props;
+const { Content } = await work.render();
+---
+
+<BaseLayout
+  title={work.data.title}
+  description={work.data.description}
+  ogImage={work.data.coverImage}
+>
+  <article class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          {work.data.title}
+        </h1>
+        
+        <div class="flex flex-wrap items-center gap-4 text-[rgb(var(--color-secondary))] mb-4">
+          <time>{formatDate(work.data.date)}</time>
+        </div>
+        
+        {work.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-6">
+            {work.data.tags.map((tag) => (
+              <a href={`/tags/${tag}`} class="tag hover:bg-[rgb(var(--color-border))] transition-colors">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )}
+        
+        {work.data.coverImage && (
+          <img
+            src={work.data.coverImage}
+            alt={work.data.title}
+            class="w-full rounded-lg mb-8"
+          />
+        )}
+      </header>
+      
+      <!-- Technologies -->
+      {work.data.technologies && work.data.technologies.length > 0 && (
+        <section class="card mb-8">
+          <h2 class="text-xl font-bold mb-4">使用技術</h2>
+          <div class="flex flex-wrap gap-2">
+            {work.data.technologies.map((tech) => (
+              <span class="tag bg-[rgb(var(--color-primary))] bg-opacity-10 border-[rgb(var(--color-primary))]">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+      
+      <!-- Links -->
+      {work.data.links && (
+        <section class="card mb-8">
+          <h2 class="text-xl font-bold mb-4">リンク</h2>
+          <div class="flex flex-wrap gap-4">
+            {work.data.links.github && (
+              <a
+                href={work.data.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary inline-flex items-center gap-2"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                </svg>
+                GitHub
+              </a>
+            )}
+            {work.data.links.demo && (
+              <a
+                href={work.data.links.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+              >
+                デモを見る
+              </a>
+            )}
+            {work.data.links.article && (
+              <a
+                href={work.data.links.article}
+                class="btn btn-secondary"
+              >
+                関連記事を読む
+              </a>
+            )}
+          </div>
+        </section>
+      )}
+      
+      <!-- Screenshots -->
+      {work.data.screenshots && work.data.screenshots.length > 0 && (
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-4">スクリーンショット</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {work.data.screenshots.map((screenshot) => (
+              <img
+                src={screenshot}
+                alt={work.data.title}
+                class="w-full rounded-lg"
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </section>
+      )}
+      
+      <!-- Content -->
+      <div class="prose prose-lg">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

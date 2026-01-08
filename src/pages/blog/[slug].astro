@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { formatDate } from '../../utils/date';
+import { getRelatedPosts } from '../../utils/tags';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+export async function getStaticPaths() {
+  const blogPosts = await getCollection('blog', ({ data }) => !data.draft);
+  return blogPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+// 関連記事を取得
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const relatedPosts = getRelatedPosts(post, allPosts, 3);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  ogImage={post.data.coverImage}
+>
+  <article class="container mx-auto px-4 py-12">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <header class="mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">
+          {post.data.title}
+        </h1>
+        
+        <div class="flex flex-wrap items-center gap-4 text-[rgb(var(--color-secondary))] mb-4">
+          <time>{formatDate(post.data.date)}</time>
+          {post.data.updated && (
+            <>
+              <span>•</span>
+              <span>更新: {formatDate(post.data.updated)}</span>
+            </>
+          )}
+        </div>
+        
+        {post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2 mb-6">
+            {post.data.tags.map((tag) => (
+              <a href={`/tags/${tag}`} class="tag hover:bg-[rgb(var(--color-border))] transition-colors">
+                #{tag}
+              </a>
+            ))}
+          </div>
+        )}
+        
+        {post.data.coverImage && (
+          <img
+            src={post.data.coverImage}
+            alt={post.data.title}
+            class="w-full rounded-lg mb-8"
+          />
+        )}
+      </header>
+      
+      <!-- Table of Contents -->
+      {headings.length > 0 && (
+        <nav class="card mb-8">
+          <h2 class="text-xl font-bold mb-4">目次</h2>
+          <ul class="space-y-2">
+            {headings.map((heading) => (
+              <li style={`margin-left: ${(heading.depth - 2) * 1}rem`}>
+                <a
+                  href={`#${heading.slug}`}
+                  class="text-[rgb(var(--color-primary))] hover:underline"
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+      
+      <!-- Content -->
+      <div class="prose prose-lg">
+        <Content />
+      </div>
+      
+      <!-- Related Posts -->
+      {relatedPosts.length > 0 && (
+        <section class="mt-16">
+          <h2 class="text-2xl font-bold mb-6">関連記事</h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {relatedPosts.map((relatedPost) => (
+              <BlogCard
+                title={relatedPost.data.title}
+                description={relatedPost.data.description}
+                date={relatedPost.data.date}
+                tags={relatedPost.data.tags}
+                slug={relatedPost.slug}
+                coverImage={relatedPost.data.coverImage}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+</BaseLayout>
