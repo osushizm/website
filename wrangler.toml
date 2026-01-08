@@ -1,0 +1,16 @@
+name = "personal-site"
+main = "dist/_worker.js/index.js"
+compatibility_date = "2026-01-06"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+[assets]
+binding = "ASSETS"
+directory = "./dist"
+
+[observability]
+enabled = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "personal-site-db"
+database_id = "your-database-id"
