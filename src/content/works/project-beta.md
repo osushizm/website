@@ -5,7 +5,7 @@ date: 2023-11-01
 tags: ["Webアプリ", "個人開発"]
 technologies: ["React", "Node.js", "Express", "PostgreSQL", "WebSocket"]
 links:
-  github: "https://github.com/yourusername/task-manager-app"
+  github: "https://github.com/otackstack/task-manager-app"
   demo: "https://task-app-demo.example.com"
   article: "/blog/developing-task-app"
 coverImage: "/images/works/task-app.png"
