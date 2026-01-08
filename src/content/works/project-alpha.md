@@ -6,7 +6,7 @@ tags: ["Webサイト", "個人開発"]
 technologies: ["Astro", "Tailwind CSS", "Cloudflare Pages", "Cloudflare D1"]
 links:
   github: "https://github.com/yourusername/personal-site"
-  demo: "https://yourdomain.com"
+  demo: "https://otackstack.com"
 coverImage: "/images/works/portfolio-site.png"
 screenshots:
   - "/images/works/portfolio-screenshot-1.png"
