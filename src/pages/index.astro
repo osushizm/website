@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../components/layout/BaseLayout.astro';
 import BlogCard from '../components/blog/BlogCard.astro';
 import WorkCard from '../components/works/WorkCard.astro';
+import { siteConfig } from '../utils/site';
 
 // ブログ記事を取得（最新3件、下書き除外）
 const allBlogPosts = await getCollection('blog', ({ data }) => !data.draft);
@@ -15,24 +16,28 @@ const allWorks = await getCollection('works');
 const recentWorks = allWorks
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 3);
+
+const githubLink =
+  siteConfig.socialLinks.find((link) => link.name === "GitHub") ??
+  siteConfig.socialLinks[0];
 ---
 
 <BaseLayout
   title="ホーム"
-  description="フルスタックエンジニアの個人サイト。ブログや成果物を紹介しています。"
+  description={siteConfig.description}
 >
   <!-- Hero Section -->
   <section class="container mx-auto px-4 py-20">
     <div class="max-w-4xl mx-auto text-center">
       <h1 class="text-5xl md:text-6xl font-bold mb-6">
-        Your Name
+        {siteConfig.name}
       </h1>
       <p class="text-xl md:text-2xl text-[rgb(var(--color-secondary))] mb-8">
-        フルスタックエンジニア / Web開発者
+        {siteConfig.tagline}
       </p>
       <p class="text-lg text-[rgb(var(--color-secondary))] max-w-2xl mx-auto leading-relaxed">
-        モダンなWeb技術を使って、ユーザー体験を重視したアプリケーションを開発しています。
-        このサイトでは、技術ブログや制作した成果物を公開しています。
+        プロダクトの目的を言語化し、設計から実装、運用まで一貫して支える開発を行っています。
+        このサイトでは、技術ブログ、成果物、学習メモをまとめています。
       </p>
       <div class="flex justify-center gap-4 mt-8">
         <a href="/blog" class="btn btn-primary">
@@ -112,10 +117,10 @@ const recentWorks = allWorks
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-6">GitHub</h2>
       <p class="text-[rgb(var(--color-secondary))] mb-8">
-        オープンソースプロジェクトに貢献したり、個人プロジェクトを公開しています。
+        OSSの活動や個人プロジェクトの進捗はこちらにまとめています。
       </p>
       <a
-        href="https://github.com/yourusername"
+        href={githubLink?.href}
         target="_blank"
         rel="noopener noreferrer"
         class="btn btn-primary inline-flex items-center gap-2"
