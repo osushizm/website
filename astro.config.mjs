@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://otackstack.com', // 本番環境のURLに変更してください
-  output: 'hybrid', // SSGとSSRの混在を許可
+  output: 'static', // SSGを利用
   
   vite: {
     plugins: [tailwindcss()]

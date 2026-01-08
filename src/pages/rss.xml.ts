@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
   const sortedPosts = blog.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
   return rss({
-    title: 'Your Name - ブログ',
+    title: 'Otackstack - ブログ',
     description: 'フルスタックエンジニアの技術ブログ',
     site: context.site || 'https://otackstack.com',
     items: sortedPosts.map((post) => ({
