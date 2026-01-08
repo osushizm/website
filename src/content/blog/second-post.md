@@ -4,7 +4,7 @@ description: "ユーティリティファーストなCSSフレームワーク、
 date: 2023-12-20
 tags: ["Tailwind CSS", "デザイン", "CSS"]
 draft: false
-coverImage: "/images/blog/tailwind-design.png"
+coverImage: "/images/placeholder.svg"
 ---
 
 ## ユーティリティファーストとは？

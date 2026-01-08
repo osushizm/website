@@ -1,38 +1,13 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import { siteConfig } from '../utils/site';
 
-const links = [
-  {
-    name: 'GitHub',
-    url: 'https://github.com/otackstack',
-    description: 'オープンソースプロジェクトやコードを公開しています',
-    icon: 'github',
-  },
-  {
-    name: 'Twitter',
-    url: 'https://twitter.com/otackstack',
-    description: '技術情報や日常のつぶやきを投稿しています',
-    icon: 'twitter',
-  },
-  {
-    name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/otackstack',
-    description: 'プロフェッショナルなネットワーキング',
-    icon: 'linkedin',
-  },
-  {
-    name: 'Zenn',
-    url: 'https://zenn.dev/otackstack',
-    description: '技術記事を投稿しています',
-    icon: 'zenn',
-  },
-  {
-    name: 'Qiita',
-    url: 'https://qiita.com/otackstack',
-    description: '技術記事を投稿しています',
-    icon: 'qiita',
-  },
-];
+const links = siteConfig.socialLinks.map((link) => ({
+  name: link.name,
+  url: link.href,
+  description: link.description,
+  icon: link.icon,
+}));
 ---
 
 <BaseLayout

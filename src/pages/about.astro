@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../components/layout/BaseLayout.astro';
+import { siteConfig } from '../utils/site';
 
 const skills = [
   {
@@ -19,11 +20,21 @@ const skills = [
     items: ['Git', 'REST API', 'GraphQL', 'Figma', 'Notion'],
   },
 ];
+
+const githubLink =
+  siteConfig.socialLinks.find((link) => link.name === "GitHub") ??
+  siteConfig.socialLinks[0];
+const twitterLink =
+  siteConfig.socialLinks.find((link) => link.name === "Twitter") ??
+  siteConfig.socialLinks[1];
+const linkedinLink =
+  siteConfig.socialLinks.find((link) => link.name === "LinkedIn") ??
+  siteConfig.socialLinks[2];
 ---
 
 <BaseLayout
   title="プロフィール"
-  description="フルスタックエンジニアのプロフィール、スキル、経歴について。"
+  description="Otackstackのプロフィール、スキル、経歴について。"
 >
   <div class="container mx-auto px-4 py-12">
     <div class="max-w-4xl mx-auto">
@@ -34,12 +45,12 @@ const skills = [
         <h2 class="text-2xl font-bold mb-4">自己紹介</h2>
         <div class="prose">
           <p>
-            フルスタックエンジニアとして、モダンなWeb技術を使ったアプリケーション開発に取り組んでいます。
-            ユーザー体験を重視し、パフォーマンスとメンテナンス性の高いコードを書くことを心がけています。
+            {siteConfig.name}として、プロダクトの目的と体験を軸にした開発を行っています。
+            UI/UX設計からバックエンド、インフラまで一貫して担当できる体制を大切にしています。
           </p>
           <p>
-            フロントエンドからバックエンド、インフラまで幅広く対応できることが強みです。
-            新しい技術の学習にも積極的で、常に最適なソリューションを探求しています。
+            小さく作って素早く検証し、成果につながる改善を積み重ねるスタイルが得意です。
+            技術選定はチームの規模や運用フェーズに合わせて柔軟に行っています。
           </p>
         </div>
       </section>
@@ -73,17 +84,17 @@ const skills = [
             <h3 class="text-lg font-semibold">フリーランス エンジニア</h3>
             <p class="text-[rgb(var(--color-secondary))] mb-2">2022年 - 現在</p>
             <p>
-              Web アプリケーションの設計・開発を中心に、様々なプロジェクトに携わっています。
-              クライアントの要望を丁寧にヒアリングし、最適なソリューションを提供しています。
+              B2B向けダッシュボード、社内ツール、ECサイトの構築などを担当。
+              ヒアリングから設計、実装、運用改善まで伴走し、継続的な成果に繋げています。
             </p>
           </div>
           
           <div>
-            <h3 class="text-lg font-semibold">株式会社○○ / ソフトウェアエンジニア</h3>
+            <h3 class="text-lg font-semibold">プロダクト企業 / ソフトウェアエンジニア</h3>
             <p class="text-[rgb(var(--color-secondary))] mb-2">2020年 - 2022年</p>
             <p>
-              自社サービスの開発に従事。フロントエンドからバックエンドまで幅広く担当し、
-              新機能の開発やパフォーマンス改善に貢献しました。
+              自社サービスの新機能開発とパフォーマンス改善を担当。
+              技術的負債の解消やCI/CD整備を通じて、開発体験の向上にも貢献しました。
             </p>
           </div>
         </div>
@@ -97,7 +108,9 @@ const skills = [
             <h3 class="font-semibold mb-2">Email</h3>
             <p class="text-[rgb(var(--color-secondary))]">
               <!-- スパム対策: JavaScriptで表示 -->
-              <span id="email-address">メールアドレスを表示するにはJavaScriptを有効にしてください</span>
+              <span id="email-address" data-email={siteConfig.email}>
+                メールアドレスを表示するにはJavaScriptを有効にしてください
+              </span>
             </p>
           </div>
           
@@ -105,7 +118,7 @@ const skills = [
             <h3 class="font-semibold mb-2">SNS</h3>
             <div class="flex gap-4">
               <a
-                href="https://github.com/otackstack"
+                href={githubLink?.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[rgb(var(--color-primary))] hover:underline"
@@ -113,7 +126,7 @@ const skills = [
                 GitHub
               </a>
               <a
-                href="https://twitter.com/otackstack"
+                href={twitterLink?.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[rgb(var(--color-primary))] hover:underline"
@@ -121,7 +134,7 @@ const skills = [
                 Twitter
               </a>
               <a
-                href="https://www.linkedin.com/in/otackstack"
+                href={linkedinLink?.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[rgb(var(--color-primary))] hover:underline"
@@ -140,9 +153,9 @@ const skills = [
   // スパム対策: メールアドレスをJavaScriptで表示
   const emailElement = document.getElementById('email-address');
   if (emailElement) {
-    const user = 'contact';
-    const domain = 'otackstack.com';
-    const email = `${user}@${domain}`;
-    emailElement.innerHTML = `<a href="mailto:${email}" class="text-[rgb(var(--color-primary))] hover:underline">${email}</a>`;
+    const email = emailElement.dataset.email;
+    if (email) {
+      emailElement.innerHTML = `<a href="mailto:${email}" class="text-[rgb(var(--color-primary))] hover:underline">${email}</a>`;
+    }
   }
 </script>
