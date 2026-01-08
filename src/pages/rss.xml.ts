@@ -4,13 +4,13 @@ import type { APIContext } from 'astro';
 
 export async function GET(context: APIContext) {
   const blog = await getCollection('blog', ({ data }) => !data.draft);
-  
+
   const sortedPosts = blog.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-  
+
   return rss({
     title: 'Your Name - ブログ',
     description: 'フルスタックエンジニアの技術ブログ',
-    site: context.site || 'https://yourdomain.com',
+    site: context.site || 'https://otackstack.com',
     items: sortedPosts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
