@@ -5,12 +5,12 @@ date: 2024-01-15
 tags: ["Webサイト", "個人開発"]
 technologies: ["Astro", "Tailwind CSS", "Cloudflare Pages", "Cloudflare D1"]
 links:
-  github: "https://github.com/yourusername/personal-site"
+  github: "https://github.com/otackstack/personal-site"
   demo: "https://otackstack.com"
-coverImage: "/images/works/portfolio-site.png"
+coverImage: "/images/placeholder.svg"
 screenshots:
-  - "/images/works/portfolio-screenshot-1.png"
-  - "/images/works/portfolio-screenshot-2.png"
+  - "/images/placeholder.svg"
+  - "/images/placeholder.svg"
 ---
 
 ## プロジェクト概要

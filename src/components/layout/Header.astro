@@ -1,22 +1,16 @@
 ---
 import ThemeToggle from '../common/ThemeToggle.astro';
-
-const navItems = [
-  { href: '/', label: 'ホーム' },
-  { href: '/blog', label: 'ブログ' },
-  { href: '/works', label: '成果物' },
-  { href: '/about', label: 'プロフィール' },
-  { href: '/links', label: 'リンク' },
-];
+import { siteConfig } from '../../utils/site';
 
 const currentPath = Astro.url.pathname;
+const navItems = siteConfig.navigation;
 ---
 
 <header class="sticky top-0 z-50 bg-[rgb(var(--color-bg))] border-b border-[rgb(var(--color-border))] backdrop-blur-sm bg-opacity-90">
   <nav class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
       <a href="/" class="text-2xl font-bold no-underline hover:no-underline">
-        Your Name
+        {siteConfig.name}
       </a>
       
       <div class="flex items-center gap-6">

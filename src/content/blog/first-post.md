@@ -5,7 +5,7 @@ date: 2024-01-10
 updated: 2024-01-11
 tags: ["Astro", "Cloudflare", "Web開発"]
 draft: false
-coverImage: "/images/blog/astro-cloudflare.png"
+coverImage: "/images/placeholder.svg"
 ---
 
 ## はじめに
