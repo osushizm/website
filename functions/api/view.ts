@@ -13,7 +13,7 @@ interface ViewResponse {
 
 // 簡易的なbot検出
 function isBot(userAgent: string | null): boolean {
-  if (!userAgent) return true;
+  if (!userAgent) return false;
   
   const botPatterns = [
     /bot/i,
