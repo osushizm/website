@@ -1,0 +1,40 @@
+---
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+const viewCountId = `view-count-${slug}`;
+---
+
+<div class="flex items-center gap-2 text-sm text-[rgb(var(--color-secondary))]">
+  <span>閲覧数</span>
+  <span id={viewCountId} data-view-count data-slug={slug}>-</span>
+</div>
+
+<script is:inline>
+  const slug = {JSON.stringify(slug)};
+  const viewCountId = {JSON.stringify(viewCountId)};
+  const target = document.getElementById(viewCountId);
+
+  if (target && slug) {
+    fetch('/api/view', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ slug }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data?.success && typeof data.count === 'number') {
+          target.textContent = String(data.count);
+          return;
+        }
+        target.textContent = '-';
+      })
+      .catch(() => {
+        target.textContent = '-';
+      });
+  }
+</script>
