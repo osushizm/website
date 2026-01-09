@@ -1,10 +1,11 @@
 ---
-title: "AstroとCloudflareで構築する次世代の個人サイト"
+title: "個人サイト | osushzim.com - Gitで管理する個人ページ"
 description: "Astroの静的サイト生成能力とCloudflareのグローバルネットワークを組み合わせ、高速でスケーラブル、かつ低コストな個人サイトを構築する方法を解説します。"
 date: 2024-01-10
 tags: ["Astro", "Cloudflare", "Web開発"]
-coverImage: "/images/2026-01-09 15.48.59 osushizm.com 9c8c41625b41.png"
+coverImage: "/images/bibouroku.png"
 ---
+[osushizm.com](https://osushizm.com)
 
 ## はじめに
 
