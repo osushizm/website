@@ -24,12 +24,15 @@ const skills = [
 const githubLink =
   siteConfig.socialLinks.find((link) => link.name === "GitHub") ??
   siteConfig.socialLinks[0];
-const twitterLink =
-  siteConfig.socialLinks.find((link) => link.name === "Twitter") ??
+const xLink =
+  siteConfig.socialLinks.find((link) => link.name === "X") ??
   siteConfig.socialLinks[1];
-const linkedinLink =
-  siteConfig.socialLinks.find((link) => link.name === "LinkedIn") ??
+const qiitaLink =
+  siteConfig.socialLinks.find((link) => link.name === "Qiita") ??
   siteConfig.socialLinks[2];
+const twitchLink =
+  siteConfig.socialLinks.find((link) => link.name === "Twitch") ??
+  siteConfig.socialLinks[3];
 ---
 
 <BaseLayout
@@ -126,20 +129,28 @@ const linkedinLink =
                 GitHub
               </a>
               <a
-                href={twitterLink?.href}
+                href={xLink?.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[rgb(var(--color-primary))] hover:underline"
               >
-                Twitter
+                X
               </a>
               <a
-                href={linkedinLink?.href}
+                href={qiitaLink?.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[rgb(var(--color-primary))] hover:underline"
               >
-                LinkedIn
+                Qiita
+              </a>
+              <a
+                href={twitchLink?.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[rgb(var(--color-primary))] hover:underline"
+              >
+                Twitch
               </a>
             </div>
           </div>

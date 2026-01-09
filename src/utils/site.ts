@@ -16,33 +16,27 @@ export const siteConfig = {
   socialLinks: [
     {
       name: "GitHub",
-      href: "https://github.com/otackstack",
+      href: "https://github.com/osushizm",
       description: "制作物のソースやOSSの活動",
       icon: "github",
     },
     {
-      name: "Twitter",
-      href: "https://twitter.com/otackstack",
+      name: "X",
+      href: "https://x.com/osushizm",
       description: "開発の気づきや技術メモを発信",
       icon: "twitter",
     },
     {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/otackstack",
-      description: "経歴や職務の詳細はこちら",
-      icon: "linkedin",
-    },
-    {
-      name: "Zenn",
-      href: "https://zenn.dev/otackstack",
-      description: "技術記事を定期的に投稿",
-      icon: "zenn",
-    },
-    {
       name: "Qiita",
-      href: "https://qiita.com/otackstack",
+      href: "https://qiita.com/osushizm",
       description: "TILや小さな検証結果の共有",
       icon: "qiita",
+    },
+    {
+      name: "Twitch",
+      href: "https://www.twitch.tv/osushizm",
+      description: "配信のアーカイブや活動記録",
+      icon: "twitch",
     },
   ],
 };
