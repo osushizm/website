@@ -6,7 +6,7 @@ tags: ["Webサイト", "個人開発"]
 technologies: ["Astro", "Tailwind CSS", "Cloudflare Pages", "Cloudflare D1"]
 links:
   github: "https://github.com/otackstack/personal-site"
-  demo: "https://otackstack.com"
+  demo: "https://tokisudeniosushi.com"
 coverImage: "/images/placeholder.svg"
 screenshots:
   - "/images/placeholder.svg"

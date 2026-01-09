@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://otackstack.com/sitemap-index.xml
+Sitemap: https://tokisudeniosushi.com/sitemap-index.xml
