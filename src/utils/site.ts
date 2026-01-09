@@ -5,7 +5,7 @@ export const siteConfig = {
   tagline: "フルスタックエンジニア / Web開発者",
   description:
     "フルスタックエンジニアの個人サイト。ブログや成果物、技術的な取り組みを紹介しています。",
-  email: "contact@tokisudeniosushi.com",
+  email: "osushi.osushisuki@gmail.com",
   navigation: [
     { href: "/", label: "ホーム" },
     { href: "/blog", label: "ブログ" },
