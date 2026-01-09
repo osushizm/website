@@ -6,7 +6,7 @@ tags: ["Webアプリ", "個人開発"]
 technologies: ["React", "Node.js", "Express", "PostgreSQL", "WebSocket"]
 links:
   github: "https://github.com/otackstack/task-manager-app"
-  demo: "https://task-app.otackstack.com"
+  demo: "https://task-app.tokisudeniosushi.com"
   article: "/blog/developing-task-app"
 coverImage: "/images/placeholder.svg"
 screenshots:

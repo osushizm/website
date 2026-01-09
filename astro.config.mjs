@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://otackstack.com', // 本番環境のURLに変更してください
+  site: 'https://tokisudeniosushi.com', // 本番環境のURLに変更してください
   output: 'static', // SSGを利用
   
   vite: {
