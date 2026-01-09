@@ -1,23 +1,27 @@
 ---
-import BaseLayout from '../components/layout/BaseLayout.astro';
-import { siteConfig } from '../utils/site';
+import BaseLayout from "../components/layout/BaseLayout.astro";
+import { siteConfig } from "../utils/site";
 
 const skills = [
   {
-    category: 'フロントエンド',
-    items: ['React', 'Next.js', 'Astro', 'TypeScript', 'Tailwind CSS'],
+    category: "属性",
+    items: ["ゲーム", "読書", "プログラミング", "クラウド・インフラ"],
   },
   {
-    category: 'バックエンド',
-    items: ['Node.js', 'Python', 'Go', 'PostgreSQL', 'Redis'],
+    category: "ゲーム",
+    items: ["LoL", "Valorant", "FF14", "Steam"],
   },
   {
-    category: 'インフラ・DevOps',
-    items: ['Docker', 'Kubernetes', 'AWS', 'Cloudflare', 'GitHub Actions'],
+    category: "読書",
+    items: ["ファンタジー小説", "歴史小説", "SF小説", "漫画"],
   },
   {
-    category: 'その他',
-    items: ['Git', 'REST API', 'GraphQL', 'Figma', 'Notion'],
+    category: "プログラミング",
+    items: ["Python", "Go", "shell", "bash"],
+  },
+  {
+    category: "クラウド・インフラ",
+    items: ["Kubernetes", "Openstack", "Proxmox", "Cloudflare"],
   },
 ];
 
@@ -42,43 +46,56 @@ const twitchLink =
   <div class="container mx-auto px-4 py-12">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl font-bold mb-8">プロフィール</h1>
-      
+
       <!-- Introduction -->
       <section class="card mb-8">
         <h2 class="text-2xl font-bold mb-4">自己紹介</h2>
         <div class="prose">
           <p>
-            {siteConfig.screenName}として、プロダクトの目的と体験を軸にした開発を行っています。
-            UI/UX設計からバックエンド、インフラまで一貫して担当できる体制を大切にしています。
+            インフラエンジニアとして、オンプレミス環境を中心にサーバ運用・保守に携わっています。
+            日々の仕事は「安定して動き続けること」を何より大切にしつつ、裏側で何が起きているのかを理解することに楽しさを感じています。
           </p>
           <p>
-            小さく作って素早く検証し、成果につながる改善を積み重ねるスタイルが得意です。
-            技術選定はチームの規模や運用フェーズに合わせて柔軟に行っています。
+            最近は Kubernetes や OpenStack といった基盤技術にも取り組み始め、
+            「分からないなりに手を動かし、仕組みをほどいていく」フェーズを満喫中です。
+            まだまだ勉強不足だと感じる場面も多いですが、その分、学べる余白があると思っています。
+          </p>
+          <p>
+            趣味はネットゲーム。
+            FPSやMOBAを基本にSteam系でまんべんなくプレイします。
+            ITの前は情報通信業に従事していましたが、趣味でゲーム中のボイスチャットを支えるTeamSpeakというVCアプリのサーバを運営していました。
+            その経験をきっかけにITインフラおよびLinuxに興味が湧き、今の仕事に携わるようになりました。
+          </p>
+          <p>
+            このサイトでは、
+            インフラ・クラウド・Kubernetes・日々の試行錯誤や気づきなどを、
+            自分なりの言葉で記録していく予定です。
+            同じように悩んだり試したりしている誰かの、少し先を照らせたら嬉しいです。
           </p>
         </div>
       </section>
-      
+
       <!-- Skills -->
       <section class="card mb-8">
         <h2 class="text-2xl font-bold mb-6">スキル</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skills.map((skillGroup) => (
-            <div>
-              <h3 class="text-lg font-semibold mb-3 text-[rgb(var(--color-primary))]">
-                {skillGroup.category}
-              </h3>
-              <div class="flex flex-wrap gap-2">
-                {skillGroup.items.map((skill) => (
-                  <span class="tag">
-                    {skill}
-                  </span>
-                ))}
+          {
+            skills.map((skillGroup) => (
+              <div>
+                <h3 class="text-lg font-semibold mb-3 text-[rgb(var(--color-primary))]">
+                  {skillGroup.category}
+                </h3>
+                <div class="flex flex-wrap gap-2">
+                  {skillGroup.items.map((skill) => (
+                    <span class="tag">{skill}</span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </section>
-      
+
       <!-- Experience -->
       <section class="card mb-8">
         <h2 class="text-2xl font-bold mb-4">経歴</h2>
@@ -91,10 +108,14 @@ const twitchLink =
               ヒアリングから設計、実装、運用改善まで伴走し、継続的な成果に繋げています。
             </p>
           </div>
-          
+
           <div>
-            <h3 class="text-lg font-semibold">プロダクト企業 / ソフトウェアエンジニア</h3>
-            <p class="text-[rgb(var(--color-secondary))] mb-2">2020年 - 2022年</p>
+            <h3 class="text-lg font-semibold">
+              プロダクト企業 / ソフトウェアエンジニア
+            </h3>
+            <p class="text-[rgb(var(--color-secondary))] mb-2">
+              2020年 - 2022年
+            </p>
             <p>
               自社サービスの新機能開発とパフォーマンス改善を担当。
               技術的負債の解消やCI/CD整備を通じて、開発体験の向上にも貢献しました。
@@ -102,7 +123,7 @@ const twitchLink =
           </div>
         </div>
       </section>
-      
+
       <!-- Contact -->
       <section class="card">
         <h2 class="text-2xl font-bold mb-4">連絡先</h2>
@@ -116,7 +137,7 @@ const twitchLink =
               </span>
             </p>
           </div>
-          
+
           <div>
             <h3 class="font-semibold mb-2">SNS</h3>
             <div class="flex gap-4">
@@ -162,7 +183,7 @@ const twitchLink =
 
 <script>
   // スパム対策: メールアドレスをJavaScriptで表示
-  const emailElement = document.getElementById('email-address');
+  const emailElement = document.getElementById("email-address");
   if (emailElement) {
     const email = emailElement.dataset.email;
     if (email) {
