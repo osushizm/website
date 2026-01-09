@@ -1,10 +1,11 @@
 export const siteConfig = {
-  name: "Otackstack",
-  url: "https://tokisudeniosushi.com",
+  name: "お寿司の備忘録",
+  screenName: "時すでにお寿司",
+  url: "https://osushizm.com",
   tagline: "フルスタックエンジニア / Web開発者",
   description:
     "フルスタックエンジニアの個人サイト。ブログや成果物、技術的な取り組みを紹介しています。",
-  email: "contact@tokisudeniosushi.com",
+  email: "contact@osushizm.com",
   navigation: [
     { href: "/", label: "ホーム" },
     { href: "/blog", label: "ブログ" },
@@ -21,9 +22,15 @@ export const siteConfig = {
     },
     {
       name: "Twitter",
-      href: "https://twitter.com/otackstack",
+      href: "https://twitter.com/osushizm",
       description: "開発の気づきや技術メモを発信",
       icon: "twitter",
+    },
+    {
+      name: "YouTube",
+      href: "https://www.youtube.com/@osushizm",
+      description: "動画コンテンツや活動のまとめ",
+      icon: "youtube",
     },
     {
       name: "LinkedIn",

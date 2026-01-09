@@ -8,7 +8,7 @@
   <rect width="1200" height="630" fill="url(#bg)" />
   <rect x="80" y="80" width="1040" height="470" rx="24" fill="#111827" stroke="#334155" stroke-width="4" />
   <text x="140" y="220" font-family="Inter, system-ui, sans-serif" font-size="56" fill="#e2e8f0">
-    Otackstack
+    お寿司の備忘録
   </text>
   <text x="140" y="290" font-family="Inter, system-ui, sans-serif" font-size="32" fill="#94a3b8">
     Portfolio / Blog / Works
