@@ -5,7 +5,7 @@ date: 2024-01-10
 updated: 2024-01-11
 tags: ["React", "Vite", "TypeScript", "Cloudflare", "D1"]
 draft: false
-coverImage: "/images/bibouroku.png"
+coverImage: "/images/hondana.png"
 ---
 [hondana.me](https://ondana.me)
 
