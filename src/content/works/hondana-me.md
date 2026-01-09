@@ -7,7 +7,7 @@ tags: ["React", "Vite", "TypeScript", "Cloudflare", "D1"]
 draft: false
 coverImage: "/images/hondana.png"
 ---
-[hondana.me](https://ondana.me)
+[hondana.me](https://hondana.me)
 
 ## はじめに
 
