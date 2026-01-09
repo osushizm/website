@@ -1,5 +1,6 @@
 export const siteConfig = {
-  name: "Otackstack",
+  name: "お寿司の備忘録",
+  screenName: "時すでにお寿司",
   url: "https://tokisudeniosushi.com",
   tagline: "フルスタックエンジニア / Web開発者",
   description:
