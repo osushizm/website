@@ -2,7 +2,7 @@
 title: "個人サイト[osushzim.com] Gitで管理する個人ページ"
 description: "Astroの静的サイト生成能力とCloudflareのグローバルネットワークを組み合わせ、高速でスケーラブル、かつ低コストな個人サイトを構築する方法を解説します。"
 date: 2024-01-10
-tags: ["Astro", "Cloudflare", "Web開発"]
+tags: ["Astro", "Cloudflare", "Web開発","Manus","AI駆動開発"]
 coverImage: "/images/bibouroku.png"
 ---
 [osushizm.com](https://osushizm.com)

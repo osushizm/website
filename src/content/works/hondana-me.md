@@ -3,7 +3,7 @@ title: "私の本棚名刺[hondana.me] 5冊で語る自己紹介 "
 description: "フロントはVite + React + Tailwind、バックはCloudflare Pages Functions + D1 + Drizzleで構成。軽量・高速・運用しやすい構成をまとめます。"
 date: 2024-01-10
 updated: 2024-01-11
-tags: ["React", "Vite", "TypeScript", "Cloudflare", "D1"]
+tags: ["React", "Vite", "TypeScript", "Cloudflare", "D1","Web開発","Manus","AI駆動開発"]
 draft: false
 coverImage: "/images/hondana.png"
 ---
