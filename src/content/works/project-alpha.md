@@ -1,32 +1,59 @@
 ---
-title: "ポートフォリオサイト"
-description: "AstroとCloudflareを使用して構築した、この個人ポートフォリオサイトです。パフォーマンスとデザインにこだわりました。"
-date: 2024-01-15
-tags: ["Webサイト", "個人開発"]
-technologies: ["Astro", "Tailwind CSS", "Cloudflare Pages", "Cloudflare D1"]
-links:
-  github: "https://github.com/otackstack/personal-site"
-  demo: "https://tokisudeniosushi.com"
+title: "Cloudflare Pages + D1で支えるMy Bookshelfの技術スタック"
+description: "フロントはVite + React + Tailwind、バックはCloudflare Pages Functions + D1 + Drizzleで構成。軽量・高速・運用しやすい構成をまとめます。"
+date: 2024-01-10
+updated: 2024-01-11
+tags: ["React", "Vite", "TypeScript", "Cloudflare", "D1"]
+draft: false
 coverImage: "/images/placeholder.svg"
-screenshots:
-  - "/images/placeholder.svg"
-  - "/images/placeholder.svg"
 ---
 
-## プロジェクト概要
+## はじめに
 
-このサイトは、自身のスキルと成果物を紹介するために作成した個人ポートフォリオサイトです。静的サイトジェネレーターのAstroとCloudflareの各種サービスを全面的に採用し、高速かつモダンなサイトを目指しました。
+ポートフォリオサイトに「このシステムで使っている技術スタック」を載せるなら、読み手が一目で構成を把握できることが重要です。ここでは **My Bookshelf** の基本構成と概要を、フロント・バックエンド・インフラに分けて整理します。
 
-## 主な機能
+## 基本構成（全体像）
 
-- **ブログ機能**: Markdownで記事を管理し、静的に生成されます。
-- **成果物紹介**: これまでに作成したプロジェクトを一覧・詳細表示できます。
-- **閲覧数カウンター**: Cloudflare D1とFunctionsを利用して、各記事の閲覧数を非同期でカウント・表示します。
-- **レスポンシブデザイン**: モバイルからデスクトップまで、あらゆるデバイスで快適に閲覧できます。
-- **ダークモード**: ユーザーの好みに合わせてテーマを切り替えられます。
+- **フロントエンド**: Vite + React + TypeScript
+- **UI/スタイル**: Tailwind CSS + Radix UI
+- **状態管理・通信**: React Query + Fetch API
+- **バックエンド**: Node.js/TypeScript（ローカル開発）
+- **サーバーレス**: Cloudflare Pages Functions（本番）
+- **DB**: Cloudflare D1（SQLite）
+- **ORM**: Drizzle ORM
+- **デプロイ**: Cloudflare Pages
 
-## 技術的な挑戦
+## フロントエンドの概要
 
-- **パフォーマンス最適化**: Lighthouseスコアで高得点を維持するため、画像最適化や不要なJavaScriptの排除を徹底しました。
-- **エッジでの動的処理**: 閲覧数カウンターなど、従来はサーバーサイドで処理していた動的な機能をCloudflareのエッジで実装しました。
-- **コンテンツ管理**: AstroのContent Collections機能を活用し、型安全なコンテンツ管理を実現しました。
+ViteとReactを採用し、ビルド速度と開発体験を重視しています。TypeScriptで型安全に保ちつつ、UIはTailwind CSSとRadix UIの組み合わせで**軽量かつ一貫したデザイン**を実現しています。データ取得はReact Queryでキャッシュ・更新を制御し、UIの応答性を高めています。
+
+```tsx
+// 例: React Queryでのデータ取得（概念図）
+const { data, isLoading } = useQuery({
+  queryKey: ["shelves"],
+  queryFn: () => fetch("/api/bookshelf").then((res) => res.json()),
+});
+```
+
+## バックエンドの概要
+
+開発時はNode.js/TypeScriptでサーバーを起動し、本番はCloudflare Pages Functionsでエッジ実行します。APIはJSONベースで扱いやすく、フロントと連携しやすい設計です。
+
+## データストア（D1 + Drizzle）
+
+Cloudflare D1はSQLite互換のエッジDBで、軽量な書籍データやプロフィール情報の保存に最適です。Drizzle ORMを使ってSQLを型安全に扱い、運用の保守性を高めています。
+
+```ts
+// 例: Drizzleでの簡易クエリ（概念図）
+const shelves = await db.select().from(shelvesTable).all();
+```
+
+## この構成のメリット
+
+- **高速**: Viteの高速ビルド + Cloudflareのエッジ配信
+- **低コスト**: サーバーレス運用でインフラ管理が最小限
+- **拡張性**: React + TypeScript + Drizzleで機能追加が容易
+
+## まとめ
+
+My Bookshelfは、**フロントはVite + React、バックはCloudflare Pages Functions + D1**というモダンな構成で、パフォーマンスと運用性のバランスを取っています。ポートフォリオに掲載する際は、この構成を簡潔にまとめることで、読み手に技術選定の意図を伝えやすくなります。
